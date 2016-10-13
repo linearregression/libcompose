@@ -5,8 +5,8 @@ import (
 
 	"golang.org/x/net/context"
 
-	"github.com/docker/libcompose/project/events"
-	"github.com/docker/libcompose/project/options"
+	"github.com/codeship/libcompose/project/events"
+	"github.com/codeship/libcompose/project/options"
 )
 
 // Run executes a one off command (like `docker run image command`).

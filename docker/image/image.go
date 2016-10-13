@@ -16,7 +16,7 @@ import (
 	"github.com/docker/docker/pkg/term"
 	"github.com/docker/docker/reference"
 	"github.com/docker/docker/registry"
-	"github.com/docker/libcompose/docker/auth"
+	"github.com/codeship/libcompose/docker/auth"
 )
 
 // Exists return whether or not the service image already exists

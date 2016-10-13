@@ -4,10 +4,10 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/docker/libcompose/config"
-	"github.com/docker/libcompose/docker/ctx"
-	"github.com/docker/libcompose/lookup"
-	"github.com/docker/libcompose/yaml"
+	"github.com/codeship/libcompose/config"
+	"github.com/codeship/libcompose/docker/ctx"
+	"github.com/codeship/libcompose/lookup"
+	"github.com/codeship/libcompose/yaml"
 	shlex "github.com/flynn/go-shlex"
 	"github.com/stretchr/testify/assert"
 )

@@ -4,8 +4,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/docker/libcompose/cli/app"
-	"github.com/docker/libcompose/project"
+	"github.com/codeship/libcompose/cli/app"
+	"github.com/codeship/libcompose/project"
 	"github.com/urfave/cli"
 )
 

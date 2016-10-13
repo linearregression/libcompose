@@ -5,9 +5,9 @@ import (
 
 	"golang.org/x/net/context"
 
-	"github.com/docker/libcompose/docker"
-	"github.com/docker/libcompose/project"
-	"github.com/docker/libcompose/project/options"
+	"github.com/codeship/libcompose/docker"
+	"github.com/codeship/libcompose/project"
+	"github.com/codeship/libcompose/project/options"
 )
 
 func main() {

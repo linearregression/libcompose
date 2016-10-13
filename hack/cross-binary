@@ -33,7 +33,7 @@ for OS in ${OS_PLATFORM_ARG[@]}; do
         fi
         echo "Building binary for $OS/$ARCH..."
         GOARCH=$ARCH GOOS=$OS CGO_ENABLED=0 go build \
-              -ldflags="-w -X github.com/docker/libcompose/version.GITCOMMIT=`git rev-parse --short HEAD`" \
+              -ldflags="-w -X github.com/codeship/libcompose/version.GITCOMMIT=`git rev-parse --short HEAD`" \
               -o ${OUTPUT_BIN} ./cli/main
     done
 done
