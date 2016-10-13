@@ -5,7 +5,7 @@ import (
 	"path"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/docker/libcompose/utils"
+	"github.com/codeship/libcompose/utils"
 )
 
 // MergeServicesV2 merges a v2 compose file into an existing set of service configs

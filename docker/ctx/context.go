@@ -3,9 +3,9 @@ package ctx
 import (
 	"github.com/docker/docker/cliconfig"
 	"github.com/docker/docker/cliconfig/configfile"
-	"github.com/docker/libcompose/docker/auth"
-	"github.com/docker/libcompose/docker/client"
-	"github.com/docker/libcompose/project"
+	"github.com/codeship/libcompose/docker/auth"
+	"github.com/codeship/libcompose/docker/client"
+	"github.com/codeship/libcompose/project"
 )
 
 // Context holds context meta information about a libcompose project and docker

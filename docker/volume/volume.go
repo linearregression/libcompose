@@ -7,10 +7,10 @@ import (
 
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
-	"github.com/docker/libcompose/config"
+	"github.com/codeship/libcompose/config"
 
-	composeclient "github.com/docker/libcompose/docker/client"
-	"github.com/docker/libcompose/project"
+	composeclient "github.com/codeship/libcompose/docker/client"
+	"github.com/codeship/libcompose/project"
 )
 
 // Volume holds attributes and method for a volume definition in compose
