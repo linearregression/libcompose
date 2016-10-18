@@ -6,7 +6,7 @@ PROJECT=github.com/codeship/libcompose
 mkdir -p vendor/src
 
 rm -rf .gopath
-mkdir -p .gopath/src/github.com/docker
+mkdir -p .gopath/src/github.com/codeship
 ln -sf ../../../.. .gopath/src/${PROJECT}
 export GOPATH="${PWD}/.gopath:${PWD}/vendor"
 
