@@ -23,6 +23,7 @@ import (
 
 // ContainerOptions is a data object with all the options for creating a container
 type ContainerOptions struct {
+<<<<<<< 381d7f57c61d9c8e5cad2ef250bf8872dd90f337
 	attach             opts.ListOpts
 	volumes            opts.ListOpts
 	tmpfs              opts.ListOpts
@@ -110,6 +111,91 @@ type ContainerOptions struct {
 	init               bool
 	initPath           string
 	credentialSpec     string
+=======
+	attach            opts.ListOpts
+	volumes           opts.ListOpts
+	tmpfs             opts.ListOpts
+	blkioWeightDevice WeightdeviceOpt
+	deviceReadBps     ThrottledeviceOpt
+	deviceWriteBps    ThrottledeviceOpt
+	links             opts.ListOpts
+	aliases           opts.ListOpts
+	linkLocalIPs      opts.ListOpts
+	deviceReadIOps    ThrottledeviceOpt
+	deviceWriteIOps   ThrottledeviceOpt
+	env               opts.ListOpts
+	labels            opts.ListOpts
+	devices           opts.ListOpts
+	ulimits           *UlimitOpt
+	sysctls           *opts.MapOpts
+	publish           opts.ListOpts
+	expose            opts.ListOpts
+	dns               opts.ListOpts
+	dnsSearch         opts.ListOpts
+	dnsOptions        opts.ListOpts
+	extraHosts        opts.ListOpts
+	volumesFrom       opts.ListOpts
+	envFile           opts.ListOpts
+	capAdd            opts.ListOpts
+	capDrop           opts.ListOpts
+	groupAdd          opts.ListOpts
+	securityOpt       opts.ListOpts
+	storageOpt        opts.ListOpts
+	labelsFile        opts.ListOpts
+	loggingOpts       opts.ListOpts
+	privileged        bool
+	pidMode           string
+	utsMode           string
+	usernsMode        string
+	publishAll        bool
+	stdin             bool
+	tty               bool
+	oomKillDisable    bool
+	oomScoreAdj       int
+	containerIDFile   string
+	entrypoint        string
+	hostname          string
+	memoryString      string
+	memoryReservation string
+	memorySwap        string
+	kernelMemory      string
+	user              string
+	workingDir        string
+	cpuShares         int64
+	cpuPercent        int64
+	cpuPeriod         int64
+	cpuQuota          int64
+	cpusetCpus        string
+	cpusetMems        string
+	blkioWeight       uint16
+	ioMaxBandwidth    string
+	ioMaxIOps         uint64
+	swappiness        int64
+	netMode           string
+	macAddress        string
+	ipv4Address       string
+	ipv6Address       string
+	ipcMode           string
+	pidsLimit         int64
+	restartPolicy     string
+	readonlyRootfs    bool
+	loggingDriver     string
+	cgroupParent      string
+	volumeDriver      string
+	stopSignal        string
+	isolation         string
+	shmSize           string
+	noHealthcheck     bool
+	healthCmd         string
+	healthInterval    time.Duration
+	healthTimeout     time.Duration
+	healthRetries     int
+	runtime           string
+	autoRemove        bool
+	init              bool
+	initPath          string
+	credentialSpec    string
+>>>>>>> Updating docker/docker dependency
 
 	Image string
 	Args  []string

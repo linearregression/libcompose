@@ -162,7 +162,11 @@ func getBuiltinDriver(name, home string, options []string, uidMaps, gidMaps []id
 }
 
 // New creates the driver and initializes it at the specified root.
+<<<<<<< 381d7f57c61d9c8e5cad2ef250bf8872dd90f337
 func New(root, name string, options []string, uidMaps, gidMaps []idtools.IDMap, pg plugingetter.PluginGetter) (Driver, error) {
+=======
+func New(root string, name string, options []string, uidMaps, gidMaps []idtools.IDMap, pg plugingetter.PluginGetter) (Driver, error) {
+>>>>>>> Updating docker/docker dependency
 	if name != "" {
 		logrus.Debugf("[graphdriver] trying provided driver: %s", name) // so the logs show specified driver
 		return GetDriver(name, root, options, uidMaps, gidMaps, pg)
