@@ -1,0 +1,7 @@
+FROM golang:1.7
+MAINTAINER dev@codeship.com
+
+RUN mkdir -p /go/src/github.com/codeship/libcompose
+WORKDIR /go/src/github.com/codeship/libcompose
+ADD . ./
+
