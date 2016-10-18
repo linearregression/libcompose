@@ -4,7 +4,11 @@
 
 // +build !go1.7
 
+<<<<<<< 3bfe26089f58d37ab6b757c4f8625245245636a8
 package ctxhttp // import "golang.org/x/net/context/ctxhttp"
+=======
+package ctxhttp
+>>>>>>> moving to godep
 
 import (
 	"io"
