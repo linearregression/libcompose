@@ -8,14 +8,14 @@ import (
 	"golang.org/x/net/context"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/docker/docker/api/types"
-	containertypes "github.com/docker/docker/api/types/container"
 	"github.com/codeship/libcompose/config"
 	composecontainer "github.com/codeship/libcompose/docker/container"
 	"github.com/codeship/libcompose/labels"
 	"github.com/codeship/libcompose/project"
 	"github.com/codeship/libcompose/project/events"
 	util "github.com/codeship/libcompose/utils"
+	"github.com/docker/docker/api/types"
+	containertypes "github.com/docker/docker/api/types/container"
 )
 
 func (s *Service) createContainer(ctx context.Context, namer Namer, oldContainer string, configOverride *config.ServiceConfig, oneOff bool) (*composecontainer.Container, error) {

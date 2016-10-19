@@ -5,9 +5,9 @@ import (
 
 	"golang.org/x/net/context"
 
+	"github.com/codeship/libcompose/config"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
-	"github.com/codeship/libcompose/config"
 
 	composeclient "github.com/codeship/libcompose/docker/client"
 	"github.com/codeship/libcompose/project"

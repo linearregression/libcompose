@@ -6,9 +6,9 @@ import (
 
 	"golang.org/x/net/context"
 
-	"github.com/docker/docker/api/types"
 	"github.com/codeship/libcompose/labels"
 	"github.com/codeship/libcompose/test"
+	"github.com/docker/docker/api/types"
 )
 
 func TestSingleNamer(t *testing.T) {

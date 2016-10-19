@@ -8,11 +8,6 @@ import (
 	"golang.org/x/net/context"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/docker/docker/api/types"
-	"github.com/docker/docker/api/types/filters"
-	"github.com/docker/docker/api/types/network"
-	"github.com/docker/docker/client"
-	"github.com/docker/go-connections/nat"
 	"github.com/codeship/libcompose/config"
 	"github.com/codeship/libcompose/docker/auth"
 	"github.com/codeship/libcompose/docker/builder"
@@ -26,6 +21,11 @@ import (
 	"github.com/codeship/libcompose/project/options"
 	"github.com/codeship/libcompose/utils"
 	"github.com/codeship/libcompose/yaml"
+	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types/filters"
+	"github.com/docker/docker/api/types/network"
+	"github.com/docker/docker/client"
+	"github.com/docker/go-connections/nat"
 )
 
 // Service is a project.Service implementations.

@@ -1,8 +1,8 @@
 package client
 
 import (
-	"github.com/docker/docker/client"
 	"github.com/codeship/libcompose/project"
+	"github.com/docker/docker/client"
 )
 
 // Factory is a factory to create docker clients.
