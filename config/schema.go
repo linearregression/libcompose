@@ -20,7 +20,9 @@ var schemaDataV1 = `{
       "type": "object",
 
       "properties": {
+        "add_docker": {"type": "boolean"},
         "build": {"type": "string"},
+        "cached": {"type": "boolean"},
         "cap_add": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
         "cap_drop": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
         "cgroup_parent": {"type": "string"},
@@ -34,11 +36,16 @@ var schemaDataV1 = `{
         "cpu_shares": {"type": ["number", "string"]},
         "cpu_quota": {"type": ["number", "string"]},
         "cpuset": {"type": "string"},
+        "default_cache_branch": {"type": "string"},
         "devices": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
         "dns": {"$ref": "#/definitions/string_or_list"},
         "dns_search": {"$ref": "#/definitions/string_or_list"},
+        "dockercfg_service": {"type": "string"},
         "dockerfile": {"type": "string"},
         "domainname": {"type": "string"},
+        "encrypted_dockercfg_path":  {"type": "string"},
+        "encrypted_env": {"type": "string"},
+        "encrypted_env_file": {"type": "string"},
         "entrypoint": {
           "oneOf": [
             {"type": "string"},
