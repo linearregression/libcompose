@@ -1,0 +1,15 @@
+- type: parallel
+  steps:
+  - name: validate-gofmt
+    service: app
+    command: hack/make.sh validate-gofmt
+  - name: validate-lint
+    service: app
+    command: hack/make.sh validate-lint
+  - name: validate-vet
+    service: app
+    command: hack/make.sh validate-vet
+  - name: test-unit
+    service: app
+    command: ./hack/make.sh test-unit
+
