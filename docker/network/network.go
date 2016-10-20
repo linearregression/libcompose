@@ -7,11 +7,11 @@ import (
 
 	"golang.org/x/net/context"
 
+	"github.com/codeship/libcompose/config"
+	"github.com/codeship/libcompose/yaml"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/network"
 	"github.com/docker/docker/client"
-	"github.com/codeship/libcompose/config"
-	"github.com/codeship/libcompose/yaml"
 )
 
 // Network holds attributes and method for a network definition in compose

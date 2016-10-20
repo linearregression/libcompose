@@ -3,9 +3,9 @@ package volume
 import (
 	"testing"
 
-	"github.com/docker/docker/api/types"
 	"github.com/codeship/libcompose/config"
 	"github.com/codeship/libcompose/test"
+	"github.com/docker/docker/api/types"
 )
 
 func TestVolumesFromServices(t *testing.T) {

@@ -10,13 +10,13 @@ import (
 	"golang.org/x/net/context"
 
 	"github.com/Sirupsen/logrus"
+	"github.com/codeship/libcompose/docker/auth"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
 	"github.com/docker/docker/pkg/jsonmessage"
 	"github.com/docker/docker/pkg/term"
 	"github.com/docker/docker/reference"
 	"github.com/docker/docker/registry"
-	"github.com/codeship/libcompose/docker/auth"
 )
 
 // Exists return whether or not the service image already exists

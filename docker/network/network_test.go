@@ -6,11 +6,11 @@ import (
 
 	"golang.org/x/net/context"
 
-	"github.com/docker/docker/api/types"
-	"github.com/docker/docker/api/types/network"
 	"github.com/codeship/libcompose/config"
 	"github.com/codeship/libcompose/test"
 	"github.com/codeship/libcompose/yaml"
+	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types/network"
 )
 
 type networkNotFound struct {

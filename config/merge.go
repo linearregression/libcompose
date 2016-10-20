@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/docker/docker/pkg/urlutil"
 	"github.com/codeship/libcompose/utils"
 	composeYaml "github.com/codeship/libcompose/yaml"
+	"github.com/docker/docker/pkg/urlutil"
 	"gopkg.in/yaml.v2"
 )
 

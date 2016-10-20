@@ -12,10 +12,10 @@ import (
 
 	"golang.org/x/net/context"
 
+	"github.com/codeship/libcompose/test"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/pkg/archive"
 	"github.com/docker/docker/pkg/jsonmessage"
-	"github.com/codeship/libcompose/test"
 )
 
 type DaemonClient struct {

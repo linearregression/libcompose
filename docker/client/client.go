@@ -7,12 +7,12 @@ import (
 	"path/filepath"
 	"runtime"
 
+	"github.com/codeship/libcompose/version"
 	"github.com/docker/docker/cliconfig"
 	"github.com/docker/docker/client"
 	"github.com/docker/docker/pkg/homedir"
 	"github.com/docker/go-connections/sockets"
 	"github.com/docker/go-connections/tlsconfig"
-	"github.com/codeship/libcompose/version"
 )
 
 const (

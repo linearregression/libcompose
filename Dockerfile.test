@@ -3,5 +3,6 @@ MAINTAINER dev@codeship.com
 
 RUN mkdir -p /go/src/github.com/codeship/libcompose
 WORKDIR /go/src/github.com/codeship/libcompose
+RUN go get github.com/golang/lint/golint
 ADD . ./
 

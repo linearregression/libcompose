@@ -4,8 +4,6 @@ import (
 	"golang.org/x/net/context"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/docker/docker/api/types"
-	"github.com/docker/docker/api/types/filters"
 	"github.com/codeship/libcompose/config"
 	"github.com/codeship/libcompose/docker/auth"
 	"github.com/codeship/libcompose/docker/client"
@@ -15,6 +13,8 @@ import (
 	"github.com/codeship/libcompose/docker/volume"
 	"github.com/codeship/libcompose/labels"
 	"github.com/codeship/libcompose/project"
+	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types/filters"
 )
 
 // NewProject creates a Project with the specified context.

@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/docker/docker/api/types/container"
 	"github.com/codeship/libcompose/project"
+	"github.com/docker/docker/api/types/container"
 )
 
 // DefaultDependentServices return the dependent services (as an array of ServiceRelationship)

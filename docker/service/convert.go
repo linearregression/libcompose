@@ -6,17 +6,17 @@ import (
 
 	"golang.org/x/net/context"
 
+	"github.com/codeship/libcompose/config"
+	composeclient "github.com/codeship/libcompose/docker/client"
+	composecontainer "github.com/codeship/libcompose/docker/container"
+	"github.com/codeship/libcompose/project"
+	"github.com/codeship/libcompose/utils"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/api/types/network"
 	"github.com/docker/docker/api/types/strslice"
 	"github.com/docker/docker/runconfig/opts"
 	"github.com/docker/go-connections/nat"
 	"github.com/docker/go-units"
-	"github.com/codeship/libcompose/config"
-	composeclient "github.com/codeship/libcompose/docker/client"
-	composecontainer "github.com/codeship/libcompose/docker/container"
-	"github.com/codeship/libcompose/project"
-	"github.com/codeship/libcompose/utils"
 	// "github.com/codeship/libcompose/yaml"
 )
 
