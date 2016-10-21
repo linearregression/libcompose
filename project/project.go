@@ -171,7 +171,7 @@ func (p *Project) CreateService(name string) (Service, error) {
 
 // AddConfig adds the specified service config for the specified name.
 func (p *Project) AddConfig(name string, config *config.ServiceConfig) error {
-	p.Notify(events.ServiceAdd, name, nil)
+	p.Notify(events.NewServiceAddEvent(name))
 
 	p.ServiceConfigs.Add(name, config)
 	p.reload = append(p.reload, name)
@@ -181,14 +181,14 @@ func (p *Project) AddConfig(name string, config *config.ServiceConfig) error {
 
 // AddVolumeConfig adds the specified volume config for the specified name.
 func (p *Project) AddVolumeConfig(name string, config *config.VolumeConfig) error {
-	p.Notify(events.VolumeAdd, name, nil)
+	p.Notify(events.NewVolumeAddEvent(name, config.Driver))
 	p.VolumeConfigs[name] = config
 	return nil
 }
 
 // AddNetworkConfig adds the specified network config for the specified name.
 func (p *Project) AddNetworkConfig(name string, config *config.NetworkConfig) error {
-	p.Notify(events.NetworkAdd, name, nil)
+	p.Notify(events.NewNetworkAddEvent(name, config.Driver))
 	p.NetworkConfigs[name] = config
 	return nil
 }
@@ -358,12 +358,18 @@ func (p *Project) loadWrappers(wrappers map[string]*serviceWrapper, servicesToCo
 	return nil
 }
 
-func (p *Project) perform(start, done events.EventType, services []string, action wrapperAction, cycleAction serviceAction) error {
-	p.Notify(start, "", nil)
+func (p *Project) perform(eventWrapper events.EventWrapper, services []string, action wrapperAction, cycleAction serviceAction) error {
+	p.Notify(eventWrapper.Started(""))
 
 	err := p.forEach(services, action, cycleAction)
 
-	p.Notify(done, "", nil)
+
+  if err != nil {
+ 		p.Notify(eventWrapper.Done(""))
+	} else {
+ 		p.Notify(eventWrapper.Failed("", err))
+ 	}
+
 	return err
 }
 
@@ -509,17 +515,11 @@ func (p *Project) AddListener(c chan<- events.Event) {
 	}
 }
 
-// Notify notifies all project listener with the specified eventType, service name and datas.
+// Notify notifies all project listener with the specified event
 // This implements implicitly events.Notifier interface.
-func (p *Project) Notify(eventType events.EventType, serviceName string, data map[string]string) {
-	if eventType == events.NoEvent {
+func (p *Project) Notify(event events.Event) {
+	if event == nil {
 		return
-	}
-
-	event := events.Event{
-		EventType:   eventType,
-		ServiceName: serviceName,
-		Data:        data,
 	}
 
 	for _, l := range p.listeners {
