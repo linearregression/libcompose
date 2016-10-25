@@ -14,11 +14,15 @@ func (p *Project) Create(ctx context.Context, options options.Create, services .
 	if options.NoRecreate && options.ForceRecreate {
 		return fmt.Errorf("no-recreate and force-recreate cannot be combined")
 	}
+
 	if err := p.initialize(ctx); err != nil {
 		return err
 	}
-	return p.perform(events.ProjectCreateStart, events.ProjectCreateDone, services, wrapperAction(func(wrapper *serviceWrapper, wrappers map[string]*serviceWrapper) {
-		wrapper.Do(wrappers, events.ServiceCreateStart, events.ServiceCreate, func(service Service) error {
+
+	eventWrapper := events.NewEventWrapper("Project Create", events.NewProjectCreateStartEvent, events.NewProjectCreateDoneEvent, events.NewProjectCreateFailedEvent)
+	return p.perform(eventWrapper, services, wrapperAction(func(wrapper *serviceWrapper, wrappers map[string]*serviceWrapper) {
+		serviceEventWrapper := events.NewEventWrapper("Service Create", events.NewServiceCreateStartEvent, events.NewServiceCreateDoneEvent, events.NewServiceCreateFailedEvent)
+		wrapper.Do(wrappers, serviceEventWrapper, func(service Service) error {
 			return service.Create(ctx, options)
 		})
 	}), nil)

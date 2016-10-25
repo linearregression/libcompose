@@ -363,13 +363,11 @@ func (p *Project) perform(eventWrapper events.EventWrapper, services []string, a
 
 	err := p.forEach(services, action, cycleAction)
 
-
-  if err != nil {
- 		p.Notify(eventWrapper.Done(""))
+	if err != nil {
+		p.Notify(eventWrapper.Done(""))
 	} else {
- 		p.Notify(eventWrapper.Failed("", err))
- 	}
-
+		p.Notify(eventWrapper.Failed("", err))
+	}
 	return err
 }
 

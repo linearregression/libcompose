@@ -8,8 +8,10 @@ import (
 
 // Pause pauses the specified services containers (like docker pause).
 func (p *Project) Pause(ctx context.Context, services ...string) error {
-	return p.perform(events.ProjectPauseStart, events.ProjectPauseDone, services, wrapperAction(func(wrapper *serviceWrapper, wrappers map[string]*serviceWrapper) {
-		wrapper.Do(nil, events.ServicePauseStart, events.ServicePause, func(service Service) error {
+	eventWrapper := events.NewEventWrapper("Project Pause", events.NewProjectPauseStartEvent, events.NewProjectPauseDoneEvent, events.NewProjectPauseFailedEvent)
+	return p.perform(eventWrapper, services, wrapperAction(func(wrapper *serviceWrapper, wrappers map[string]*serviceWrapper) {
+		serviceEventWrapper := events.NewEventWrapper("Service Pause", events.NewServicePauseStartEvent, events.NewServicePauseDoneEvent, events.NewServicePauseFailedEvent)
+		wrapper.Do(nil, serviceEventWrapper, func(service Service) error {
 			return service.Pause(ctx)
 		})
 	}), nil)
