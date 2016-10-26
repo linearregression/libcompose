@@ -14,7 +14,7 @@ import (
 func (p *Project) Containers(ctx context.Context, filter Filter, services ...string) ([]string, error) {
 	containers := []string{}
 	err := p.forEach(services, wrapperAction(func(wrapper *serviceWrapper, wrappers map[string]*serviceWrapper) {
-		wrapper.Do(nil, events.NoEvent, events.NoEvent, func(service Service) error {
+		wrapper.Do(nil, events.NewDummyEventWrapper("Container List"), func(service Service) error {
 			serviceContainers, innerErr := service.Containers(ctx)
 			if innerErr != nil {
 				return innerErr

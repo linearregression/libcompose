@@ -8,12 +8,15 @@ import (
 )
 
 // Up creates and starts the specified services (kinda like docker run).
+// Up creates and starts the specified services (kinda like docker run).
 func (p *Project) Up(ctx context.Context, options options.Up, services ...string) error {
 	if err := p.initialize(ctx); err != nil {
 		return err
 	}
-	return p.perform(events.ProjectUpStart, events.ProjectUpDone, services, wrapperAction(func(wrapper *serviceWrapper, wrappers map[string]*serviceWrapper) {
-		wrapper.Do(wrappers, events.ServiceUpStart, events.ServiceUp, func(service Service) error {
+	eventWrapper := events.NewEventWrapper("Project Up", events.NewProjectUpStartEvent, events.NewProjectUpDoneEvent, events.NewProjectUpFailedEvent)
+	return p.perform(eventWrapper, services, wrapperAction(func(wrapper *serviceWrapper, wrappers map[string]*serviceWrapper) {
+		serviceEventWrapper := events.NewEventWrapper("Service Up", events.NewServiceUpStartEvent, events.NewServiceUpDoneEvent, events.NewServiceUpFailedEvent)
+		wrapper.Do(wrappers, serviceEventWrapper, func(service Service) error {
 			return service.Up(ctx, options)
 		})
 	}), func(service Service) error {

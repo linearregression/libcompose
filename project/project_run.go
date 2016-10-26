@@ -20,7 +20,8 @@ func (p *Project) Run(ctx context.Context, serviceName string, commandParts []st
 	}
 	var exitCode int
 	err := p.forEach([]string{}, wrapperAction(func(wrapper *serviceWrapper, wrappers map[string]*serviceWrapper) {
-		wrapper.Do(wrappers, events.ServiceRunStart, events.ServiceRun, func(service Service) error {
+		serviceEventWrapper := events.NewEventWrapper("Service Run", events.NewServiceRunStartEvent, events.NewServiceRunDoneEvent, events.NewServiceRunFailedEvent)
+		wrapper.Do(wrappers, serviceEventWrapper, func(service Service) error {
 			if service.Name() == serviceName {
 				code, err := service.Run(ctx, commandParts, opts)
 				exitCode = code
