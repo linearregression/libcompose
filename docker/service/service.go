@@ -685,7 +685,7 @@ func (s *Service) Events(ctx context.Context, evts chan events.ContainerEvent) e
 					attributes[attr] = event.Actor.Attributes[attr]
 				}
 				e := events.ContainerEvent{
-					Event:      events.NewEvent(service, m.Action),
+					Event:      events.NewEvent(service, event.Action),
 					Type:       event.Type,
 					ID:         event.Actor.ID,
 					Time:       time.Unix(event.Time, 0),
