@@ -6,12 +6,13 @@ import (
 	"golang.org/x/net/context"
 
 	"github.com/codeship/libcompose/docker"
+	"github.com/codeship/libcompose/docker/ctx"
 	"github.com/codeship/libcompose/project"
 	"github.com/codeship/libcompose/project/options"
 )
 
 func main() {
-	project, err := docker.NewProject(&docker.Context{
+	project, err := docker.NewProject(&ctx.Context{
 		Context: project.Context{
 			ComposeFiles: []string{"docker-compose.yml"},
 			ProjectName:  "yeah-compose",
