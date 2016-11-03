@@ -23,8 +23,8 @@ func ListByFilter(ctx context.Context, clientInstance client.ContainerAPIClient,
 	}
 
 	return clientInstance.ContainerList(ctx, types.ContainerListOptions{
-		All:    true,
-		Filter: filterArgs,
+		All:     true,
+		Filters: filterArgs,
 	})
 }
 

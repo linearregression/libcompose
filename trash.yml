@@ -61,6 +61,8 @@ import:
   version: aa90a531c598af4ace14ee9e96021743fe4cff2e
 - package: github.com/docker/docker/api/types/versions
   version: aa90a531c598af4ace14ee9e96021743fe4cff2e
+- package: github.com/docker/docker/api/types/volume
+  version: aa90a531c598af4ace14ee9e96021743fe4cff2e
 - package: github.com/docker/docker/builder
   version: aa90a531c598af4ace14ee9e96021743fe4cff2e
 - package: github.com/docker/docker/builder/dockerignore
@@ -150,11 +152,11 @@ import:
 - package: github.com/docker/docker/runconfig/opts
   version: aa90a531c598af4ace14ee9e96021743fe4cff2e
 - package: github.com/docker/go-connections/nat
-  version: 988efe982fdecb46f01d53465878ff1f2ff411ce
+  version: f512407a188ecb16f31a33dbc9c4e4814afc1b03
 - package: github.com/docker/go-connections/sockets
-  version: 988efe982fdecb46f01d53465878ff1f2ff411ce
+  version: f512407a188ecb16f31a33dbc9c4e4814afc1b03
 - package: github.com/docker/go-connections/tlsconfig
-  version: 988efe982fdecb46f01d53465878ff1f2ff411ce
+  version: f512407a188ecb16f31a33dbc9c4e4814afc1b03
 - package: github.com/docker/go-units
   version: f2d77a61e3c169b43402a0a1e84f06daf29b8190
 - package: github.com/flynn/go-shlex

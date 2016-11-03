@@ -7,6 +7,7 @@ import (
 
 	"github.com/codeship/libcompose/config"
 	"github.com/docker/docker/api/types"
+	volumetypes "github.com/docker/docker/api/types/volume"
 	"github.com/docker/docker/client"
 
 	composeclient "github.com/codeship/libcompose/docker/client"
@@ -69,7 +70,7 @@ func (v *Volume) EnsureItExists(ctx context.Context) error {
 
 func (v *Volume) create(ctx context.Context) error {
 	fmt.Printf("Creating volume %q with driver %q\n", v.fullName(), v.driver)
-	_, err := v.client.VolumeCreate(ctx, types.VolumeCreateRequest{
+	_, err := v.client.VolumeCreate(ctx, volumetypes.VolumesCreateBody{
 		Name:       v.fullName(),
 		Driver:     v.driver,
 		DriverOpts: v.driverOptions,
