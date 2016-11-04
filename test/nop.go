@@ -13,6 +13,7 @@ import (
 	"github.com/docker/docker/api/types/filters"
 	"github.com/docker/docker/api/types/network"
 	"github.com/docker/docker/api/types/registry"
+	volumetypes "github.com/docker/docker/api/types/volume"
 	"github.com/docker/docker/client"
 )
 
@@ -61,14 +62,15 @@ func (client *NopClient) ContainerAttach(ctx context.Context, container string, 
 	return types.HijackedResponse{}, errNoEngine
 }
 
-// ContainerCommit applies changes into a container and creates a new tagged image
-func (client *NopClient) ContainerCommit(ctx context.Context, container string, options types.ContainerCommitOptions) (types.ContainerCommitResponse, error) {
-	return types.ContainerCommitResponse{}, errNoEngine
+// ContainerCommit applies changes into a container and creates a new tagged image.
+func (client *NopClient) ContainerCommit(ctx context.Context, container string, options types.ContainerCommitOptions) (types.IDResponse, error) {
+	return types.IDResponse{}, errNoEngine
 }
 
-// ContainerCreate creates a new container based in the given configuration
-func (client *NopClient) ContainerCreate(ctx context.Context, config *container.Config, hostConfig *container.HostConfig, networkingConfig *network.NetworkingConfig, containerName string) (types.ContainerCreateResponse, error) {
-	return types.ContainerCreateResponse{}, errNoEngine
+// ContainerCreate creates a new container based in the given configuration.
+// It can be associated with a name, but it's not mandatory.
+func (client *NopClient) ContainerCreate(ctx context.Context, config *container.Config, hostConfig *container.HostConfig, networkingConfig *network.NetworkingConfig, containerName string) (container.ContainerCreateCreatedBody, error) {
+	return container.ContainerCreateCreatedBody{}, errNoEngine
 }
 
 // ContainerDiff shows differences in a container filesystem since it was started
@@ -81,9 +83,9 @@ func (client *NopClient) ContainerExecAttach(ctx context.Context, execID string,
 	return types.HijackedResponse{}, errNoEngine
 }
 
-// ContainerExecCreate creates a new exec configuration to run an exec process
-func (client *NopClient) ContainerExecCreate(ctx context.Context, container string, config types.ExecConfig) (types.ContainerExecCreateResponse, error) {
-	return types.ContainerExecCreateResponse{}, errNoEngine
+// ContainerExecCreate creates a new exec configuration to run an exec process.
+func (client *NopClient) ContainerExecCreate(ctx context.Context, container string, config types.ExecConfig) (types.IDResponse, error) {
+	return types.IDResponse{}, errNoEngine
 }
 
 // ContainerExecInspect returns information about a specific exec process on the docker host
@@ -187,12 +189,12 @@ func (client *NopClient) ContainerUnpause(ctx context.Context, container string)
 }
 
 // ContainerUpdate updates resources of a container
-func (client *NopClient) ContainerUpdate(ctx context.Context, container string, updateConfig container.UpdateConfig) (types.ContainerUpdateResponse, error) {
-	return types.ContainerUpdateResponse{}, errNoEngine
+func (client *NopClient) ContainerUpdate(ctx context.Context, containerID string, updateConfig container.UpdateConfig) (container.ContainerUpdateOKBody, error) {
+	return container.ContainerUpdateOKBody{}, errNoEngine
 }
 
 // ContainerWait pauses execution until a container exits
-func (client *NopClient) ContainerWait(ctx context.Context, container string) (int, error) {
+func (client *NopClient) ContainerWait(ctx context.Context, containerID string) (int64, error) {
 	return 0, errNoEngine
 }
 
@@ -247,7 +249,7 @@ func (client *NopClient) ImageInspectWithRaw(ctx context.Context, image string) 
 }
 
 // ImageList returns a list of images in the docker host
-func (client *NopClient) ImageList(ctx context.Context, options types.ImageListOptions) ([]types.Image, error) {
+func (client *NopClient) ImageList(ctx context.Context, options types.ImageListOptions) ([]types.ImageSummary, error) {
 	return nil, errNoEngine
 }
 
@@ -326,14 +328,25 @@ func (client *NopClient) NetworkList(ctx context.Context, options types.NetworkL
 	return nil, errNoEngine
 }
 
+// NetworksPrune requests the daemon to delete unused networks
+func (client *NopClient) NetworksPrune(ctx context.Context, cfg types.NetworksPruneConfig) (types.NetworksPruneReport, error) {
+	return types.NetworksPruneReport{}, errNoEngine
+}
+
 // NetworkRemove removes an existent network from the docker host
 func (client *NopClient) NetworkRemove(ctx context.Context, networkID string) error {
 	return errNoEngine
 }
 
-// RegistryLogin authenticates the docker server with a given docker registry
-func (client *NopClient) RegistryLogin(ctx context.Context, auth types.AuthConfig) (types.AuthResponse, error) {
-	return types.AuthResponse{}, errNoEngine
+// Ping pings the server and return the value of the "Docker-Experimental" header
+func (client *NopClient) Ping(ctx context.Context) (bool, error) {
+	return true, errNoEngine
+}
+
+// RegistryLogin authenticates the docker server with a given docker registry.
+// It returns UnauthorizerError when the authentication fails.
+func (client *NopClient) RegistryLogin(ctx context.Context, auth types.AuthConfig) (registry.AuthenticateOKBody, error) {
+	return registry.AuthenticateOKBody{}, errNoEngine
 }
 
 // ServerVersion returns information of the docker client and server host
@@ -346,7 +359,7 @@ func (client *NopClient) UpdateClientVersion(v string) {
 }
 
 // VolumeCreate creates a volume in the docker host
-func (client *NopClient) VolumeCreate(ctx context.Context, options types.VolumeCreateRequest) (types.Volume, error) {
+func (client *NopClient) VolumeCreate(ctx context.Context, options volumetypes.VolumesCreateBody) (types.Volume, error) {
 	return types.Volume{}, errNoEngine
 }
 
@@ -360,9 +373,9 @@ func (client *NopClient) VolumeInspectWithRaw(ctx context.Context, volumeID stri
 	return types.Volume{}, []byte{}, errNoEngine
 }
 
-// VolumeList returns the volumes configured in the docker host
-func (client *NopClient) VolumeList(ctx context.Context, filter filters.Args) (types.VolumesListResponse, error) {
-	return types.VolumesListResponse{}, errNoEngine
+// VolumeList returns the volumes configured in the docker host.
+func (client *NopClient) VolumeList(ctx context.Context, filter filters.Args) (volumetypes.VolumesListOKBody, error) {
+	return volumetypes.VolumesListOKBody{}, errNoEngine
 }
 
 // VolumeRemove removes a volume from the docker host

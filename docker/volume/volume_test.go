@@ -5,7 +5,7 @@ import (
 
 	"github.com/codeship/libcompose/config"
 	"github.com/codeship/libcompose/test"
-	"github.com/docker/docker/api/types"
+	volumetypes "github.com/docker/docker/api/types/volume"
 )
 
 func TestVolumesFromServices(t *testing.T) {
@@ -76,7 +76,7 @@ func testExpectedContainsVolume(t *testing.T, index int, expected []*Volume, vol
 type volumeClient struct {
 	test.NopClient
 	expectedName         string
-	expectedVolumeCreate types.VolumeCreateRequest
+	expectedVolumeCreate volumetypes.VolumesCreateBody
 	inspectError         error
 	inspectVolumeDriver  string
 	inspectVolumeOptions map[string]string
