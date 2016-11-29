@@ -160,7 +160,7 @@ func (p *Project) CreateService(name string) (Service, error) {
 					parts := strings.SplitN(envValue[0], "=", 2)
 					config.Build.Args[parts[0]] = parts[1]
 				default:
-					return nil, fmt.Errorf("Tried to set Build Arg %#v to multi-value %#v.", arg, envValue)
+					return nil, fmt.Errorf("tried to set Build Arg %#v to multi-value %#v", arg, envValue)
 				}
 			}
 		}
