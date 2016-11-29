@@ -3,9 +3,9 @@ package service
 import (
 	"testing"
 
-	"github.com/docker/libcompose/config"
-	"github.com/docker/libcompose/docker/ctx"
-	"github.com/docker/libcompose/project"
+	"github.com/codeship/libcompose/config"
+	"github.com/codeship/libcompose/docker/ctx"
+	"github.com/codeship/libcompose/project"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -176,8 +176,7 @@ func TestDependentServicesRecursiveInvalid(t *testing.T) {
 }
 
 func TestDependentServicesRecursiveLoop(t *testing.T) {
-	// Loops are invalid configuration, however its good to know
-	// the code wont loop
+	// Loops are invalid configuration, however it's good to know the code won't loop
 	p := project.NewProject(&project.Context{
 		ServiceFactory: NewFactory(&ctx.Context{}),
 	}, nil, nil)

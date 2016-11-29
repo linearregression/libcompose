@@ -31,7 +31,7 @@ type Service interface {
 
 	RemoveImage(ctx context.Context, imageType options.ImageType) error
 	Containers(ctx context.Context) ([]Container, error)
-	DependentServices() []ServiceRelationship
+	DependentServices(recursive bool) []ServiceRelationship
 	Config() *config.ServiceConfig
 	Name() string
 }

@@ -107,7 +107,7 @@ func (e *EmptyService) Events(ctx context.Context, events chan events.ContainerE
 }
 
 // DependentServices implements Service.DependentServices with empty slice.
-func (e *EmptyService) DependentServices() []ServiceRelationship {
+func (e *EmptyService) DependentServices(recursive bool) []ServiceRelationship {
 	return []ServiceRelationship{}
 }
 
