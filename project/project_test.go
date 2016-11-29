@@ -44,7 +44,7 @@ func (t *TestService) Create(ctx context.Context, options options.Create) error 
 	return nil
 }
 
-func (t *TestService) DependentServices(recursive bool) []ServiceRelationship {
+func (t *TestService) DependentServices() []ServiceRelationship {
 	return nil
 }
 

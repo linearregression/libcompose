@@ -64,7 +64,7 @@ func (s *serviceWrapper) waitForDeps(wrappers map[string]*serviceWrapper) bool {
 		return true
 	}
 
-	for _, dep := range s.service.DependentServices(false) {
+	for _, dep := range s.service.DependentServices() {
 		if s.ignored[dep.Target] {
 			continue
 		}

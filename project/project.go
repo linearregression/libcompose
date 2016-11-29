@@ -394,7 +394,7 @@ func (p *Project) startService(wrappers map[string]*serviceWrapper, history []st
 	launched[wrapper.name] = true
 	history = append(history, wrapper.name)
 
-	for _, dep := range wrapper.service.DependentServices(false) {
+	for _, dep := range wrapper.service.DependentServices() {
 		target := wrappers[dep.Target]
 		if target == nil {
 			log.Debugf("Failed to find %s", dep.Target)
