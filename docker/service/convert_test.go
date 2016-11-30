@@ -9,6 +9,7 @@ import (
 	"github.com/codeship/libcompose/docker/ctx"
 	"github.com/codeship/libcompose/lookup"
 	"github.com/codeship/libcompose/yaml"
+	"github.com/docker/docker/api/types/container"
 	shlex "github.com/flynn/go-shlex"
 	"github.com/stretchr/testify/assert"
 )
@@ -81,6 +82,23 @@ func TestParseLabels(t *testing.T) {
 	assert.Equal(t, []string{"less"}, []string(cfg.Entrypoint))
 }
 
+func TestDNSOpt(t *testing.T) {
+	ctx := &ctx.Context{}
+	sc := &config.ServiceConfig{
+		DNSOpts: []string{
+			"use-vc",
+			"no-tld-query",
+		},
+	}
+	_, hostCfg, err := Convert(sc, ctx.Context, nil)
+	assert.Nil(t, err)
+
+	assert.True(t, reflect.DeepEqual([]string{
+		"use-vc",
+		"no-tld-query",
+	}, hostCfg.DNSOptions))
+}
+
 func TestGroupAdd(t *testing.T) {
 	ctx := &ctx.Context{}
 	sc := &config.ServiceConfig{
@@ -96,6 +114,17 @@ func TestGroupAdd(t *testing.T) {
 		"root",
 		"1",
 	}, hostCfg.GroupAdd))
+}
+
+func TestIsolation(t *testing.T) {
+	ctx := &ctx.Context{}
+	sc := &config.ServiceConfig{
+		Isolation: "default",
+	}
+	_, hostCfg, err := Convert(sc, ctx.Context, nil)
+	assert.Nil(t, err)
+
+	assert.Equal(t, container.Isolation("default"), hostCfg.Isolation)
 }
 
 func TestMemSwappiness(t *testing.T) {
@@ -141,5 +170,15 @@ func TestTmpfs(t *testing.T) {
 
 	assert.True(t, reflect.DeepEqual(map[string]string{
 		"/run": "",
+	}, hostCfg.Tmpfs))
+
+	sc = &config.ServiceConfig{
+		Tmpfs: yaml.Stringorslice{"/run:rw,noexec,nosuid,size=65536k"},
+	}
+	_, hostCfg, err = Convert(sc, ctx.Context, nil)
+	assert.Nil(t, err)
+
+	assert.True(t, reflect.DeepEqual(map[string]string{
+		"/run": "rw,noexec,nosuid,size=65536k",
 	}, hostCfg.Tmpfs))
 }
