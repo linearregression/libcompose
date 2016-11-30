@@ -7,31 +7,6 @@ import (
 	"github.com/codeship/libcompose/project/events"
 )
 
-var (
-	infoEvents = map[events.EventType]bool{
-		events.ServiceDeleteStart:  true,
-		events.ServiceDelete:       true,
-		events.ServiceDownStart:    true,
-		events.ServiceDown:         true,
-		events.ServiceStopStart:    true,
-		events.ServiceStop:         true,
-		events.ServiceKillStart:    true,
-		events.ServiceKill:         true,
-		events.ServiceCreateStart:  true,
-		events.ServiceCreate:       true,
-		events.ServiceStartStart:   true,
-		events.ServiceStart:        true,
-		events.ServiceRestartStart: true,
-		events.ServiceRestart:      true,
-		events.ServiceUpStart:      true,
-		events.ServiceUp:           true,
-		events.ServicePauseStart:   true,
-		events.ServicePause:        true,
-		events.ServiceUnpauseStart: true,
-		events.ServiceUnpause:      true,
-	}
-)
-
 type defaultListener struct {
 	project    *Project
 	listenChan chan events.Event

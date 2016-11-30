@@ -3,7 +3,6 @@ package volume
 import (
 	"testing"
 
-	"github.com/docker/docker/api/types"
 	"github.com/codeship/libcompose/config"
 	"github.com/codeship/libcompose/test"
 	volumetypes "github.com/docker/docker/api/types/volume"

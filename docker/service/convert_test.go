@@ -5,11 +5,11 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/docker/docker/api/types/container"
 	"github.com/codeship/libcompose/config"
 	"github.com/codeship/libcompose/docker/ctx"
 	"github.com/codeship/libcompose/lookup"
 	"github.com/codeship/libcompose/yaml"
+	"github.com/docker/docker/api/types/container"
 	shlex "github.com/flynn/go-shlex"
 	"github.com/stretchr/testify/assert"
 )
