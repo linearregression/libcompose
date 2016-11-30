@@ -195,7 +195,7 @@ func CreateTar(contextDirectory, dockerfile string) (io.ReadCloser, error) {
 	}
 
 	if err := builder.ValidateContextDirectory(contextDirectory, excludes); err != nil {
-		return nil, fmt.Errorf("Error checking context is accessible: '%s'. Please check permissions and try again.", err)
+		return nil, fmt.Errorf("error checking context is accessible: '%s'. Please check permissions and try again", err)
 	}
 
 	options := &archive.TarOptions{
