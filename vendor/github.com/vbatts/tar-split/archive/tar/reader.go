@@ -608,12 +608,11 @@ func (tr *Reader) readHeader() *Header {
 	header := tr.hdrBuff[:]
 	copy(header, zeroBlock)
 
-	if n, err := io.ReadFull(tr.r, header); err != nil {
-		tr.err = err
+	if _, tr.err = io.ReadFull(tr.r, header); tr.err != nil {
 		// because it could read some of the block, but reach EOF first
 		if tr.err == io.EOF && tr.RawAccounting {
-			if _, err := tr.rawBytes.Write(header[:n]); err != nil {
-				tr.err = err
+			if _, tr.err = tr.rawBytes.Write(header); tr.err != nil {
+				return nil
 			}
 		}
 		return nil // io.EOF is okay here
@@ -626,12 +625,11 @@ func (tr *Reader) readHeader() *Header {
 
 	// Two blocks of zero bytes marks the end of the archive.
 	if bytes.Equal(header, zeroBlock[0:blockSize]) {
-		if n, err := io.ReadFull(tr.r, header); err != nil {
-			tr.err = err
+		if _, tr.err = io.ReadFull(tr.r, header); tr.err != nil {
 			// because it could read some of the block, but reach EOF first
 			if tr.err == io.EOF && tr.RawAccounting {
-				if _, err := tr.rawBytes.Write(header[:n]); err != nil {
-					tr.err = err
+				if _, tr.err = tr.rawBytes.Write(header); tr.err != nil {
+					return nil
 				}
 			}
 			return nil // io.EOF is okay here

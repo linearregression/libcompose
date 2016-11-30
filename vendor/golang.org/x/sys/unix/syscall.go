@@ -19,11 +19,7 @@
 // These calls return err == nil to indicate success; otherwise
 // err represents an operating system error describing the failure and
 // holds a value of type syscall.Errno.
-<<<<<<< 3bfe26089f58d37ab6b757c4f8625245245636a8
 package unix // import "golang.org/x/sys/unix"
-=======
-package unix
->>>>>>> moving to godep
 
 import "unsafe"
 

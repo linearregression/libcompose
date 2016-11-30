@@ -127,14 +127,9 @@ type SwarmAPIClient interface {
 type SystemAPIClient interface {
 	Events(ctx context.Context, options types.EventsOptions) (<-chan events.Message, <-chan error)
 	Info(ctx context.Context) (types.Info, error)
-<<<<<<< 381d7f57c61d9c8e5cad2ef250bf8872dd90f337
 	RegistryLogin(ctx context.Context, auth types.AuthConfig) (registry.AuthenticateOKBody, error)
 	DiskUsage(ctx context.Context) (types.DiskUsage, error)
 	Ping(ctx context.Context) (bool, error)
-=======
-	RegistryLogin(ctx context.Context, auth types.AuthConfig) (types.AuthResponse, error)
-	DiskUsage(ctx context.Context) (types.DiskUsage, error)
->>>>>>> Updating docker/docker dependency
 }
 
 // VolumeAPIClient defines API client methods for the volumes

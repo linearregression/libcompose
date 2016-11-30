@@ -38,24 +38,6 @@ type ImageDelete struct {
 	Deleted  string `json:",omitempty"`
 }
 
-<<<<<<< 381d7f57c61d9c8e5cad2ef250bf8872dd90f337
-=======
-// Image contains response of Remote API:
-// GET "/images/json"
-type Image struct {
-	ID          string `json:"Id"`
-	ParentID    string `json:"ParentId"`
-	RepoTags    []string
-	RepoDigests []string
-	Created     int64
-	Size        int64
-	SharedSize  int64
-	VirtualSize int64
-	Labels      map[string]string
-	Containers  int64
-}
-
->>>>>>> Updating docker/docker dependency
 // GraphDriverData returns Image's graph driver config info
 // when calling inspect command
 type GraphDriverData struct {
@@ -380,42 +362,6 @@ type MountPoint struct {
 	Propagation mount.Propagation
 }
 
-<<<<<<< 381d7f57c61d9c8e5cad2ef250bf8872dd90f337
-=======
-// VolumeUsageData holds information regarding the volume usage
-type VolumeUsageData struct {
-	Size     int64 // Size holds how much disk space is used by the (local driver only). Sets to -1 if not provided.
-	RefCount int   // RefCount holds the number of containers having this volume attached to them. Sets to -1 if not provided.
-}
-
-// Volume represents the configuration of a volume for the remote API
-type Volume struct {
-	Name       string                 // Name is the name of the volume
-	Driver     string                 // Driver is the Driver name used to create the volume
-	Mountpoint string                 // Mountpoint is the location on disk of the volume
-	Status     map[string]interface{} `json:",omitempty"` // Status provides low-level status information about the volume
-	Labels     map[string]string      // Labels is metadata specific to the volume
-	Scope      string                 // Scope describes the level at which the volume exists (e.g. `global` for cluster-wide or `local` for machine level)
-	UsageData  *VolumeUsageData       `json:",omitempty"`
-}
-
-// VolumesListResponse contains the response for the remote API:
-// GET "/volumes"
-type VolumesListResponse struct {
-	Volumes  []*Volume // Volumes is the list of volumes being returned
-	Warnings []string  // Warnings is a list of warnings that occurred when getting the list from the volume drivers
-}
-
-// VolumeCreateRequest contains the request for the remote API:
-// POST "/volumes/create"
-type VolumeCreateRequest struct {
-	Name       string            // Name is the requested name of the volume
-	Driver     string            // Driver is the name of the driver that should be used to create the volume
-	DriverOpts map[string]string // DriverOpts holds the driver specific options to use for when creating the volume.
-	Labels     map[string]string // Labels holds metadata specific to the volume being created.
-}
-
->>>>>>> Updating docker/docker dependency
 // NetworkResource is the body of the "get network" http response message
 type NetworkResource struct {
 	Name       string                      // Name is the requested name of the network
@@ -492,11 +438,7 @@ type Runtime struct {
 // GET "/system/df"
 type DiskUsage struct {
 	LayersSize int64
-<<<<<<< 381d7f57c61d9c8e5cad2ef250bf8872dd90f337
 	Images     []*ImageSummary
-=======
-	Images     []*Image
->>>>>>> Updating docker/docker dependency
 	Containers []*Container
 	Volumes    []*Volume
 }
@@ -517,14 +459,11 @@ type ContainersPruneConfig struct {
 type VolumesPruneConfig struct {
 }
 
-<<<<<<< 381d7f57c61d9c8e5cad2ef250bf8872dd90f337
 // NetworksPruneConfig contains the configuration for Remote API:
 // POST "/networks/prune"
 type NetworksPruneConfig struct {
 }
 
-=======
->>>>>>> Updating docker/docker dependency
 // ContainersPruneReport contains the response for Remote API:
 // POST "/containers/prune"
 type ContainersPruneReport struct {
@@ -545,12 +484,9 @@ type ImagesPruneReport struct {
 	ImagesDeleted  []ImageDelete
 	SpaceReclaimed uint64
 }
-<<<<<<< 381d7f57c61d9c8e5cad2ef250bf8872dd90f337
 
 // NetworksPruneReport contains the response for Remote API:
 // POST "/networks/prune"
 type NetworksPruneReport struct {
 	NetworksDeleted []string
 }
-=======
->>>>>>> Updating docker/docker dependency

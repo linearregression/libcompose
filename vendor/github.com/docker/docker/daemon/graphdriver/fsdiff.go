@@ -43,11 +43,7 @@ func NewNaiveDiffDriver(driver ProtoDriver, uidMaps, gidMaps []idtools.IDMap) Dr
 
 // Diff produces an archive of the changes between the specified
 // layer and its parent layer which may be "".
-<<<<<<< 381d7f57c61d9c8e5cad2ef250bf8872dd90f337
 func (gdw *NaiveDiffDriver) Diff(id, parent string) (arch io.ReadCloser, err error) {
-=======
-func (gdw *NaiveDiffDriver) Diff(id, parent string) (arch archive.Archive, err error) {
->>>>>>> Updating docker/docker dependency
 	startTime := time.Now()
 	driver := gdw.ProtoDriver
 
