@@ -64,7 +64,7 @@ func (s *Service) Config() *config.ServiceConfig {
 
 // DependentServices returns the dependent services (as an array of ServiceRelationship) of the service.
 func (s *Service) DependentServices() []project.ServiceRelationship {
-	return DefaultDependentServices(s.project, s)
+	return RecursiveDependentServices(s.project, s)
 }
 
 // Create implements Service.Create. It ensures the image exists or build it
